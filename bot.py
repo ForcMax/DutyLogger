@@ -126,32 +126,13 @@ async def dutystatus(interaction: discord.Interaction):
     await interaction.followup.send(embed=embed, ephemeral=True)
 
 if __name__ == "__main__":
-    token = os.environ.get("DISCORD_TOKEN")
+    token = os.environ.get("MTQzMTQzOTA4NTY2MjI0MDk2OQ.GBkJqx.x3f48PT6QP_s4FPC0V-mc8NGEsl9iKiwdSjp74")
     if not token:
         print("Please set your DISCORD_TOKEN as an environment variable.")
     else:
         bot.run(token)
 
-import requests, base64, os, json
 
-DAGSHUB_USER = os.getenv("DAGSHUB_USER", "rbloxkarl")  # tukar ikut username kau
-DAGSHUB_REPO = os.getenv("DAGSHUB_REPO", "DutyLogger")
-DAGSHUB_TOKEN = os.getenv("DAGSHUB_TOKEN", "ec8267ae6c973634414f666966014e73fdb6d8e3")
-
-def upload_data_to_dagshub():
-    """Upload data.json ke DAGsHub"""
-    try:
-        with open("data.json", "r") as f:
-            content = f.read()
-        url = f"https://dagshub.com/api/v1/repos/{DAGSHUB_USER}/{DAGSHUB_REPO}/contents/data.json"
-        payload = {
-            "message": "update duty data",
-            "content": base64.b64encode(content.encode()).decode(),
-        }
-        r = requests.put(url, json=payload, auth=(DAGSHUB_USER, DAGSHUB_TOKEN))
-        print("Upload to DAGsHub:", r.status_code)
-    except Exception as e:
-        print("Upload error:", e)
 
 
 
